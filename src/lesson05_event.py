@@ -6,13 +6,19 @@ import asyncio
 # task coroutine
 async def task(event, number):
     # wait for the event to be set
+    print(f">inside task#{number}")
+    print(f">task#{number} waiting for event...")
     await event.wait()
+    print(f">task#{number} Got event...")
     # generate a random value between 0 and 1
     value = random()
     # suspend for a moment
     await asyncio.sleep(value)
     # report a message
     print(f'Task {number} got {value}')
+    print(f">task#{number} Done...")
+    return number, value
+
 
 # main coroutine
 async def main():
@@ -28,7 +34,9 @@ async def main():
     print('Main setting the event')
     event.set()
     # await for all tasks  to terminate
-    _ = await asyncio.wait(tasks)
+    done, pending = await asyncio.wait(tasks)
+    for t in done:
+        print(t.result())
 
 # run the asyncio program
 asyncio.run(main())

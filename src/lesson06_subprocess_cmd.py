@@ -9,6 +9,7 @@ async def main():
         'echo', 'Hello World')
     # report the details of the subprocess
     print(f'subprocess: {process}')
+    print(f'subprocess output: {process}')
 
 # entry point
 asyncio.run(main())

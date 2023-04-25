@@ -20,7 +20,7 @@ async def main():
     task = task_coro()
     # execute and wait for the task without a timeout
     try:
-        await asyncio.wait_for(task, timeout=0.2)
+        await asyncio.wait_for(task, timeout=1.5)
     except asyncio.TimeoutError:
         print('Gave up waiting, task canceled')
 

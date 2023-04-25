@@ -7,13 +7,15 @@ async def async_generator():
     # normal loop
     for i in range(10):
         # suspend to simulate doing work
-        await asyncio.sleep(1)
+        await asyncio.sleep(0.3)
         # yield the result
         yield i
 
 # main coroutine
 async def main():
     # loop over async generator with async for loop
+    async for item in async_generator():
+        print(item)
     async for item in async_generator():
         print(item)
 

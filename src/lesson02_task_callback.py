@@ -12,6 +12,8 @@ async def task_coroutine():
     print('executing the task')
     # suspend for a moment
     await asyncio.sleep(1)
+    print('task completed...')
+
 
 # custom coroutine
 async def main():
@@ -22,7 +24,9 @@ async def main():
     # add a done callback function
     task.add_done_callback(handle)
     # wait for the task to complete
+    print("awaiting for task from main...")
     await task
+    print("main completed...")
 
 # start the asyncio program
 asyncio.run(main())

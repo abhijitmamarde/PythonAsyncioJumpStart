@@ -8,6 +8,7 @@ async def task_coroutine():
     print('executing the task')
     # suspend for a moment
     await asyncio.sleep(1)
+    print('task completed...')
 
 # custom coroutine
 async def main():
@@ -17,6 +18,7 @@ async def main():
     task = asyncio.create_task(task_coroutine())
     # wait for the task to complete
     await task
+    print('main completed...')
 
 # start the asyncio program
 asyncio.run(main())
