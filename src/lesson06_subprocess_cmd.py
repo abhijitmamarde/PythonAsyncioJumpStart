@@ -5,11 +5,11 @@ import asyncio
 # main coroutine
 async def main():
     # run the command in a subprocess
-    process = await asyncio.create_subprocess_exec(
-        'echo', 'Hello World')
+    process = await asyncio.create_subprocess_exec("echo", "Hello World")
     # report the details of the subprocess
-    print(f'subprocess: {process}')
-    print(f'subprocess output: {process}')
+    print(f"subprocess: {process}")
+    print(f"subprocess output: {process}")
+
 
 # entry point
 asyncio.run(main())

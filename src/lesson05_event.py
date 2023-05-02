@@ -15,7 +15,7 @@ async def task(event, number):
     # suspend for a moment
     await asyncio.sleep(value)
     # report a message
-    print(f'Task {number} got {value}')
+    print(f"Task {number} got {value}")
     print(f">task#{number} Done...")
     return number, value
 
@@ -25,18 +25,18 @@ async def main():
     # create a shared event object
     event = asyncio.Event()
     # create and run the tasks
-    tasks = [asyncio.create_task(task(event, i))
-        for i in range(5)]
+    tasks = [asyncio.create_task(task(event, i)) for i in range(5)]
     # allow the tasks to start
-    print('Main suspending...')
+    print("Main suspending...")
     await asyncio.sleep(0)
     # start processing in all tasks
-    print('Main setting the event')
+    print("Main setting the event")
     event.set()
     # await for all tasks  to terminate
     done, pending = await asyncio.wait(tasks)
     for t in done:
         print(t.result())
+
 
 # run the asyncio program
 asyncio.run(main())

@@ -10,26 +10,22 @@ async def task_coro(arg):
     # suspend for a moment
     await asyncio.sleep(value)
     # report the value
-    print(f'>task {arg} done with {value}')
-    return arg, value 
+    print(f">task {arg} done with {value}")
+    return arg, value
+
 
 # main coroutine
 async def main():
     # create many tasks
-    tasks = [
-        asyncio.create_task(
-            task_coro(i),
-            name=f"CoroTask:{i}"
-            )
-        for i in range(10)
-    ]
+    tasks = [asyncio.create_task(task_coro(i), name=f"CoroTask:{i}") for i in range(10)]
     # wait for all tasks to complete
     done, pending = await asyncio.wait(tasks)
     # report results
-    print('All done')
+    print("All done")
     for t in done:
         print(f"task name: {t.get_name()}, result: {t.result()}")
     print(f"{pending=}")
+
 
 # start the asyncio program
 asyncio.run(main())

@@ -3,7 +3,7 @@
 import asyncio
 
 # define an asynchronous iterator
-class AsyncIterator():
+class AsyncIterator:
     # constructor, define some state
     def __init__(self):
         self.counter = 0
@@ -24,11 +24,13 @@ class AsyncIterator():
         # return the counter value
         return self.counter
 
+
 # main coroutine
 async def main():
     # loop over async iterator with async for loop
     async for item in AsyncIterator():
         print(item)
+
 
 # execute the asyncio program
 asyncio.run(main())

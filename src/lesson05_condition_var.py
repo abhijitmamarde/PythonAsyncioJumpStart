@@ -9,9 +9,10 @@ async def task(condition, work_list):
     # add data to the work list
     work_list.append(33)
     # notify a waiting coroutine that the work is done
-    print('Task sending notification...')
+    print("Task sending notification...")
     async with condition:
         condition.notify()
+
 
 # main coroutine
 async def main():
@@ -20,15 +21,15 @@ async def main():
     # prepare the work list
     work_list = []
     # wait to be notified that the data is ready
-    print('Main waiting for data...')
+    print("Main waiting for data...")
     async with condition:
         # create and start the task
-        _ = asyncio.create_task(
-            task(condition, work_list))
+        _ = asyncio.create_task(task(condition, work_list))
         # wait to be notified
         await condition.wait()
     # we know the data is ready
-    print(f'Got data: {work_list}')
+    print(f"Got data: {work_list}")
+
 
 # run the asyncio program
 asyncio.run(main())

@@ -12,17 +12,18 @@ async def task(semaphore, number):
         # suspend for a moment
         await asyncio.sleep(value)
         # report a message
-        print(f'Task {number} got {value}')
+        print(f"Task {number} got {value}")
+
 
 # main coroutine
 async def main():
     # create the shared semaphore
     semaphore = asyncio.Semaphore(2)
     # create and schedule tasks
-    tasks = [asyncio.create_task(task(semaphore, i))
-        for i in range(10)]
+    tasks = [asyncio.create_task(task(semaphore, i)) for i in range(10)]
     # wait for all tasks to complete
     _ = await asyncio.wait(tasks)
+
 
 # start the asyncio program
 asyncio.run(main())

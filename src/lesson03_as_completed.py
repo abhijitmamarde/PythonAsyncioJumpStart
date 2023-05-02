@@ -12,6 +12,7 @@ async def task_coro(arg):
     # return the result
     return arg, arg * value
 
+
 # main coroutine
 async def main():
     # create many coroutines
@@ -21,7 +22,8 @@ async def main():
         # get the result from the next task to complete
         i, result = await coro
         # report the result
-        print(f'>got {i}:{result}')
+        print(f">got {i}:{result}")
+
 
 # start the asyncio program
 asyncio.run(main())

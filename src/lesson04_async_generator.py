@@ -11,6 +11,7 @@ async def async_generator():
         # yield the result
         yield i
 
+
 # main coroutine
 async def main():
     # loop over async generator with async for loop
@@ -18,6 +19,7 @@ async def main():
         print(item)
     async for item in async_generator():
         print(item)
+
 
 # execute the asyncio program
 asyncio.run(main())

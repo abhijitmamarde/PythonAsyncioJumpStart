@@ -5,7 +5,7 @@ import asyncio
 
 # coroutine to generate work
 async def producer(queue):
-    print('Producer: Running')
+    print("Producer: Running")
     # generate work
     for _ in range(10):
         # generate a value
@@ -16,11 +16,12 @@ async def producer(queue):
         await queue.put(value)
     # send an all done signal
     await queue.put(None)
-    print('Producer: Done')
+    print("Producer: Done")
+
 
 # coroutine to consume work
 async def consumer(queue):
-    print('Consumer: Running')
+    print("Consumer: Running")
     # consume work
     while True:
         # get a unit of work
@@ -29,17 +30,18 @@ async def consumer(queue):
         if item is None:
             break
         # report
-        print(f'>got {item}')
+        print(f">got {item}")
     # all done
-    print('Consumer: Done')
+    print("Consumer: Done")
+
 
 # entry point coroutine
 async def main():
     # create the shared queue
     queue = asyncio.Queue()
     # run the producer and consumers
-    await asyncio.gather(
-        producer(queue), consumer(queue))
+    await asyncio.gather(producer(queue), consumer(queue))
+
 
 # start the asyncio program
 asyncio.run(main())
